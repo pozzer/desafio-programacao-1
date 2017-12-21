@@ -1,0 +1,30 @@
+<%= form_tag(upload_file_examples_path, {:multipart=>true}  ) do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Enviar' %>
+<% end %>
+<br/>
+<% if @fileparser %>
+  <h2>Total de receita bruta adicionada: $<%= @fileparser.total.to_s %></h2>
+<% end %>
+<table border=1>
+  <thead>
+    <th>purchaser_name</th>
+    <th>item_description</th>
+    <th>item_price</th>
+    <th>purchase_count</th>
+    <th>merchant_address</th>
+    <th>merchant_name</th>
+  </thead>
+  <tbody>
+    <% @examples.each do |example| %>
+      <tr>
+        <td><%= example.purchaser_name %></td>
+        <td><%= example.item_description %></td>
+        <td><%= example.item_price %></td>
+        <td><%= example.purchase_count %></td>
+        <td><%= example.merchant_address %></td>
+        <td><%= example.merchant_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
